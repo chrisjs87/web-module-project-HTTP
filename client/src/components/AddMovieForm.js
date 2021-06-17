@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-const EditMovieForm = (props) => {
-  const { push } = useHistory();
+const AddMovieForm = (props) => {
 
-  const { id } = useParams();
-
-  const [movie, setMovie] = useState({
+  const [newMovie, setNewMovie] = useState({
+    id: '',
     title: "",
     director: "",
     genre: "",
@@ -17,38 +16,30 @@ const EditMovieForm = (props) => {
     description: "",
   });
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/movies/${id}`)
-      .then((res) => {
-        setMovie(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const handleChange = (e) => {
-    setMovie({
-      ...movie,
+    setNewMovie({
+      ...newMovie,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-		axios.put(`http://localhost:5000/api/movies/${id}`, movie)
+    let uniqueId = Date.now();
+    // setNewMovie({...newMovie, id:uniqueId})
+		// axios.post(`http://localhost:5000/api/movies/${uniqueId}`, newMovie)
+    axios.post(`http://localhost:5000/api/movies/${uniqueId}`, {...newMovie, id:uniqueId})
       .then(res=> {
-        props.setMovies(res.data);
-        push(`/movies/${id}`);
+        console.log(res)
+        // props.setMovies(res.data);
+        // push(`/movies/${id}`);
       })
       .catch(err=> {
         console.log(err);
       })
   };
 
-  const { title, director, genre, metascore, description } = movie;
+  const { title, director, genre, metascore, description } = newMovie;
 
   return (
     <div className="col">
@@ -56,7 +47,7 @@ const EditMovieForm = (props) => {
         <form onSubmit={handleSubmit}>
           <div className="modal-header">
             <h4 className="modal-title">
-              Editing <strong>{movie.title}</strong>
+              Editing <strong>{newMovie.title}</strong>
             </h4>
           </div>
           <div className="modal-body">
@@ -120,6 +111,7 @@ const EditMovieForm = (props) => {
       </div>
     </div>
   );
-};
 
-export default EditMovieForm;
+} 
+
+export default AddMovieForm;

@@ -34,19 +34,19 @@ CRUD applications are the foundation of most web applications. Being able to man
 #### Editing a Movie
 > *Let's start by walking through the process of adding the routing, component and service calls need for resource updating*
 
-* [ ] First, we need to be able to navigate to the edit movie component. In App.js, add in the `<EditMovieForm> `component to the supplied edit route.
+* [COMPLETE] First, we need to be able to navigate to the edit movie component. In App.js, add in the `<EditMovieForm> `component to the supplied edit route.
 
-* [ ] Next, we need to grab the id being passed into the component through the url. Use the `useParams` hook to get the id value.
+* [COMPLETE] Next, we need to grab the id being passed into the component through the url. Use the `useParams` hook to get the id value.
 
-* [ ] We need to be able to load in the current movie's attributes into our local form state. When `EditMovieForm` mount, retrieve our current id's movie from the api and save the data returned to local state.
+* [COMPLETE] We need to be able to load in the current movie's attributes into our local form state. When `EditMovieForm` mount, retrieve our current id's movie from the api and save the data returned to local state.
 
-* [ ] At this point, nothing happens when the edit form is submitted. Add in the api call needed to update the server with our updated movie data.
+* [COMPLETE] At this point, nothing happens when the edit form is submitted. Add in the api call needed to update the server with our updated movie data.
 
-* [ ] Don't forget to make sure that your server data and your local state are in sync! Make any changes the edit route needed to give the edit form access to App's `setMovies` method.
+* [COMPLETE] Don't forget to make sure that your server data and your local state are in sync! Make any changes the edit route needed to give the edit form access to App's `setMovies` method.
 
-* [ ] Now that we have access to `setMovies`, made sure the updated list of movies is saved to our global state.
+* [COMPLETE] Now that we have access to `setMovies`, made sure the updated list of movies is saved to our global state.
 
-* [ ] Redirect the user to the currently edited movie's individual info page.
+* [COMPLETE] Redirect the user to the currently edited movie's individual info page.
 
 #### Deleting a Movie
 > *You added in a CRUD feature! Good job! Now let's get deleted squared away...*
@@ -57,7 +57,7 @@ CRUD applications are the foundation of most web applications. Being able to man
 
 * [ ] You will once again need to keep the server and state data in sync. In `App.js`, complete the `deleteMovie` method so that it receives an id, filters out any movie with that id and sets state to that resultant movie list.
 
-* [ ] Pass `deleteMovie` into the approprate component.
+* [ ] Pass `deleteMovie` into the appropriate component.
 
 * [ ] Run `deleteMovie` on the currently selected movie when your delete request is complete and redirect the user to the `/movies` route.
 
