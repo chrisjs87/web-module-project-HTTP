@@ -16,6 +16,8 @@ const AddMovieForm = (props) => {
     description: "",
   });
 
+  const { push } = useHistory();
+
   const handleChange = (e) => {
     setNewMovie({
       ...newMovie,
@@ -25,14 +27,16 @@ const AddMovieForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let uniqueId = Date.now();
+    // let uniqueId = Date.now();
     // setNewMovie({...newMovie, id:uniqueId})
 		// axios.post(`http://localhost:5000/api/movies/${uniqueId}`, newMovie)
-    axios.post(`http://localhost:5000/api/movies/${uniqueId}`, {...newMovie, id:uniqueId})
+    // axios.post(`http://localhost:5000/api/movies/${uniqueId}`, {...newMovie, id:uniqueId})
+    // axios.post(`http://localhost:5000/api/movies`, {...newMovie, id:uniqueId})
+    axios.post(`http://localhost:5000/api/movies`, newMovie)
       .then(res=> {
         console.log(res)
-        // props.setMovies(res.data);
-        // push(`/movies/${id}`);
+        props.setMovies(res.data);
+        push(`/movies`);
       })
       .catch(err=> {
         console.log(err);
@@ -47,7 +51,7 @@ const AddMovieForm = (props) => {
         <form onSubmit={handleSubmit}>
           <div className="modal-header">
             <h4 className="modal-title">
-              Editing <strong>{newMovie.title}</strong>
+              Add a new movie! <strong>{newMovie.title}</strong>
             </h4>
           </div>
           <div className="modal-body">
